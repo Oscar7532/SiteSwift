@@ -12,7 +12,7 @@ def login():
     username = "admin"
     password = "1234"
     userIn = clo.uInput("Username: ")
-    passIn = clo.uInput("Password: ")
+    passIn = clo.passInput("Password: ")
     if username == userIn and password == passIn:
         return True
     return False
@@ -21,13 +21,14 @@ def interface():
     mb.run_Interface = True
     while mb.run_Interface == True:
         login_state = login()
+        clo.clear()
         if login_state == True:
             clo.output("login Successful")
             intDisplay = interfaceDisplay()
             while login_state == True and mb.run_Interface == True:
                 clo.clear()
                 clo.output("----Main Menu----")
-                clo.output("Options:\nstate) The current state of the server.\nusers) User Management.\nsettings) Settings.\nlogout) Logout")
+                clo.output("Options:\nstate) The current state of the server.\nuser) User Management.\nsettings) Setting.\nlogout) Logout")
                 valid_input = False
                 while valid_input == False:
                     match clo.uInput(">->").lower():
@@ -37,7 +38,7 @@ def interface():
                         case "user":
                             valid_input = True
                             intDisplay.users()
-                        case "settings":
+                        case "setting":
                             valid_input = True
                             intDisplay.settings()
                         case "logout":

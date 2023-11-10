@@ -15,6 +15,6 @@ cmdInterface.start()
 
 # Run Loop
 mb.run_Main = True
-x = 0
+mb.x = 0
 while mb.run_Main == True:
-    x += 1
+  mb.x += 1

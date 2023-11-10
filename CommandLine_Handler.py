@@ -56,6 +56,7 @@ class interfaceDisplay():
         clo.clear()
         clo.output("State")
         clo.output("Current State - Probably Running #WIP not connected to state yet")
+        clo.output(("Current Run loop state - " + str(mb.x)))
         runDisplayState = True
         while runDisplayState == True:
             clo.output("Options:\nreturn) Return to Main menu.")

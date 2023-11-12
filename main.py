@@ -9,8 +9,10 @@ import Mailbox as mb
 # Startup
 
 # Command Line
-cmdInterface = Process(target = clh.interface())
-cmdInterface.start()
+if __name__ == "__main__":
+  cmdInterface = Process(target = clh.interface())
+  cmdInterface.start()
+  cmdInterface.join()
 
 
 # Run Loop

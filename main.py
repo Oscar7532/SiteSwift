@@ -1,6 +1,6 @@
 # Startup and import
 # import libraries
-from multiprocessing import Process
+import threading
 # import files
 import CommandLine_Handler as clh
 import Error_Handler as eh
@@ -10,7 +10,8 @@ import Mailbox as mb
 
 # Command Line
 if __name__ == "__main__":
-  cmdInterface = Process(target = clh.interface)
+  cmdInterface = threading.Thread(target = clh.interface)
+  cmdInterface.daemon = True
   cmdInterface.start()
 
 

@@ -20,6 +20,7 @@ def login():
 def interface():
     mb.run_Interface = True
     while mb.run_Interface == True:
+        clo.clear()
         login_state = login()
         clo.clear()
         if login_state == True:
@@ -28,17 +29,17 @@ def interface():
             while login_state == True and mb.run_Interface == True:
                 clo.clear()
                 clo.output("----Main Menu----")
-                clo.output("Options:\nstate) The current state of the server.\nuser) User Management.\nsettings) Setting.\nlogout) Logout")
+                clo.output("Options:\nstat) The current state of the server.\nuser) User Management.\nset) Settings.\nlogout) Logout")
                 valid_input = False
                 while valid_input == False:
                     match clo.uInput(">->").lower():
-                        case "state":
+                        case "stat":
                             valid_input = True
                             intDisplay.state()
                         case "user":
                             valid_input = True
                             intDisplay.users()
-                        case "setting":
+                        case "set":
                             valid_input = True
                             intDisplay.settings()
                         case "logout":
@@ -46,6 +47,7 @@ def interface():
                             login_state = False
                         case _:
                             clo.output("Option not found - Please check your spelling against listed options above to avoid grammatical errors.")
+                    clo.clear()
         else:
             clo.output("login Un-successful")
 
@@ -59,11 +61,11 @@ class interfaceDisplay():
         clo.output(("Current Run loop state - " + str(mb.x)))
         runDisplayState = True
         while runDisplayState == True:
-            clo.output("Options:\nreturn) Return to Main menu.")
+            clo.output("Options:\nback) Return to Main menu.")
             valid_input = False
             while valid_input == False:
                 match clo.uInput(">->").lower():
-                    case "return":
+                    case "back":
                         valid_input = True
                         runDisplayState = False
                     case _:
@@ -76,11 +78,11 @@ class interfaceDisplay():
         clo.output("#WIP")
         runDisplayUsers = True
         while runDisplayUsers == True:
-            clo.output("Options:\nreturn) Return to Main menu.")
+            clo.output("Options:\nback) Return to Main menu.")
             valid_input = False
             while valid_input == False:
                 match clo.uInput(">->").lower():
-                    case "return":
+                    case "back":
                         valid_input = True
                         runDisplayUsers = False
                     case _:
@@ -90,14 +92,20 @@ class interfaceDisplay():
     def settings(self):
         clo.clear()
         clo.output("Settings")
-        clo.output("#WIP")
+        clo.output("Backend system settings and controls")
         runDisplaySet = True
         while runDisplaySet == True:
-            clo.output("Options:\nreturn) Return to Main menu.")
+            clo.output("Options:\nshutdown) Shutdown whole system (DANGER: no failsafe).\nback) Return to Main menu.")
             valid_input = False
             while valid_input == False:
                 match clo.uInput(">->").lower():
-                    case "return":
+                    case "shutdown":
+                        valid_input = True
+                        mb.run_Interface = False
+                        mb.run_Main = False
+                        runDisplaySet = False
+                        clo.clear()
+                    case "back":
                         valid_input = True
                         runDisplaySet = False
                     case _:
